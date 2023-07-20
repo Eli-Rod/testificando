@@ -1,7 +1,7 @@
-import 'styled-components';
+import { DefaultTheme } from 'styled-components';
 
 declare module 'styled-components' {
-  export interface defaultTheme {
+  export interface Theme {
     title: string;
 
     colors: {
@@ -10,6 +10,6 @@ declare module 'styled-components' {
 
       background: string;
       text: string;
-    }
+    };
   }
-}
+};
