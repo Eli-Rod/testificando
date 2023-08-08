@@ -1,77 +1,59 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Switch from 'react-switch';
-import { DefaultTheme, ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components';
 import { shade } from 'polished'
 
-import { Container } from './styles';
+import { Container, MenuSistema, IconMenu } from './styles';
+import SideBar from '../Menus/SideBar';
+import SideBarUser from '../Menus/SideBarUser';
+
+import { FaBars, FaUserCog, FaUser } from 'react-icons/fa'
+import { FcPortraitMode } from "react-icons/fc";
+
+
 
 interface Props {
   toggleTheme(): void;
 }
 
 const Header: React.FC<Props> = ({ toggleTheme }) => {
+  const dataTheme = useContext(ThemeContext);
+  const [sideBar, setSideBar] = useState(false);
+  const [sideBarUser, setSideBarUser] = useState(false);
 
-  const { colors } = useContext<DefaultTheme | undefined>(ThemeContext);
+  const showSidebar = () => setSideBar(!sideBar);
+  const showSidebarUser = () => setSideBarUser(!sideBarUser);
 
-  console.log("colors")
-  console.log(colors)
+  const title = dataTheme?.title;
 
+  const colorsPrimary = dataTheme?.colors.primary;
+  const colorsSecoundary = dataTheme?.colors.secoundary;
+  console.log("toggleTheme")
+  console.log(toggleTheme)
   return (
-    <>
-      <Container>
-        Hello World
+    <Container>
+      <MenuSistema>
+        <FaBars onClick={showSidebar} />
+        {sideBar && <SideBar active={setSideBar} />}
+      </MenuSistema>
 
-        <Switch
-          id="switch"
-          onChange={toggleTheme}
-          checked={true}
-          checkedIcon={false}
-          uncheckedIcon={false}
-          height={15}
-          width={40}
-          handleDiameter={20}
-          offColor={shade(0.35, "#6433df")}
-        // onColor={colors.secundary}
-        // onColor={shade(0.35, "#c62e65")}
-        />
-      </Container>
+      <Switch
+        onChange={toggleTheme}
+        checked={title === 'dark'}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        height={10}
+        width={40}
+        handleDiameter={20}
+        offColor={shade(0.15, colorsPrimary as string)}
+        onColor={colorsSecoundary as string}
+      />
 
-      {/* <div class="main">
-        <div id="illustration"></div>
-        <div class="form-container">
-          <div class="theme-selector">
-            <input
-              type="checkbox"
-              id="switch"
-              onchange="onThemeChange()"
-              value="dark"
-            />
-            <label for="switch">Toggle</label>
-          </div>
-          <div class="form-header">
-            <h3>Entre nessa viagem</h3>
-            <p>Não tem uma conta? <a>Cadastre-se</a></p>
-          </div>
-          <form>
-            <input placeholder="Email" />
-            <input placeholder="Senha" type="password" />
-            <button type="submit" form="form" value="Submit">Continuar</button>
-          </form>
-          <div class="form-buttons">
-            <button>
-              <i class="fa-brands fa-google"></i>
-              <span>Continuar com Google</span>
-            </button>
-            <button>
-              <i class="fa-brands fa-facebook"></i>
-            </button>
-            <button>
-              <i class="fa-brands fa-apple"></i>
-            </button>
-          </div>
-        </div>
-      </div> */}
-    </>
+      <MenuSistema>
+        <FaUser onClick={showSidebarUser} />
+        {sideBarUser && <SideBarUser active={setSideBarUser} />}
+      </MenuSistema>
+    </Container>
   );
 }
 
