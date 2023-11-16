@@ -12,6 +12,6 @@ export default {
     baseColorTwo: '#8A837B',
     baseColorThree: '#A09893',
     baseColorFour: '#CBC3C3',
-    baseColorFive: '#D0C8C8',
+    baseColorFive: '#D0C8C8'
   },
 };
