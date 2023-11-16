@@ -8,7 +8,7 @@ export const Container = styled.div`
   left: 0px;
   width: 250px;
   animation: showSidebar .4s;
-  
+
   > svg {
     position: fixed;
     color: white;
@@ -40,5 +40,24 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   margin-top: 60px;
+  flex-direction: column;
+  display: flex;
+  scroll-behavior: smooth;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #fff;
+    border-radius: 10px
+  }
+
 `;
 /* left: ${props => props.sidebar ? '0' : '-100%'}; */

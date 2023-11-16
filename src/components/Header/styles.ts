@@ -7,8 +7,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0px 30px;
   box-shadow: 0px 6px 8px ${props => props.theme.colors.baseColorThree}, 0px 3px 4px ${props => props.theme.colors.baseColorFour}, 0px 1px 16px ${props => props.theme.colors.baseColorFive};
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 `;
 
 export const MenuSistema = styled.div`

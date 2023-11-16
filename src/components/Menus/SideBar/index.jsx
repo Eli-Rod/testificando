@@ -52,12 +52,14 @@ const Sidebar = ({ active }) => {
     active(false)
   }
 
+
+
   return (
     <Container sidebar={active}>
       <FaArrowLeft onClick={closeSidebar} style={{ width: 20 }} />
 
 
-      <Content onClick={closeSidebar} onScroll={true} onScrollCapture={true}>
+      <Content onClick={closeSidebar} onScroll={true}>
 
         <Divider style={{ margin: 10, backgroundColor: 'white' }} />
 
